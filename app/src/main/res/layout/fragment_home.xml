@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+<variable
+    name="vm"
+    type="com.palinkas.raktar.ui.deliveryNoteIn.DeliveryNoteInViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.deliveryNoteIn.DeliveryNoteInFragment"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/supplier_label"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            android:text="@string/supplier"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/supplier_edit_text"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/supplier_label"
+            app:layout_constraintTop_toTopOf="@+id/supplier_label"
+            app:layout_constraintBottom_toBottomOf="@+id/supplier_label"
+            android:inputType="textAutoComplete" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
