@@ -1,17 +1,16 @@
-package com.palinkas.raktar.ui.gallery
+package com.palinkas.raktar.ui.product
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.palinkas.raktar.databinding.FragmentGalleryBinding
+import com.palinkas.raktar.databinding.FragmentProductListBinding
 
-class GalleryFragment : Fragment() {
+class ProductListFragment : Fragment() {
 
-    private var _binding: FragmentGalleryBinding? = null
+    private var _binding: FragmentProductListBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -23,16 +22,11 @@ class GalleryFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val galleryViewModel =
-            ViewModelProvider(this).get(GalleryViewModel::class.java)
+            ViewModelProvider(this)[ProductListViewModel::class.java]
 
-        _binding = FragmentGalleryBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+        _binding = FragmentProductListBinding.inflate(inflater, container, false)
 
-        val textView: TextView = binding.textGallery
-        galleryViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
-        return root
+        return binding.root
     }
 
     override fun onDestroyView() {

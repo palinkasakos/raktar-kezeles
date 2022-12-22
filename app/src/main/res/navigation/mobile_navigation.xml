@@ -9,13 +9,13 @@
         android:id="@+id/nav_home"
         android:name="com.palinkas.raktar.ui.deliveryNoteIn.DeliveryNoteInFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_delivery_note_in" />
 
     <fragment
         android:id="@+id/nav_gallery"
-        android:name="com.palinkas.raktar.ui.gallery.GalleryFragment"
+        android:name="com.palinkas.raktar.ui.product.ProductListFragment"
         android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        tools:layout="@layout/fragment_product_list" />
 
     <fragment
         android:id="@+id/nav_slideshow"

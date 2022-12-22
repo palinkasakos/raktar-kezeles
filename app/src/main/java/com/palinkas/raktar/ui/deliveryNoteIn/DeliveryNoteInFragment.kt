@@ -6,11 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.palinkas.raktar.databinding.FragmentHomeBinding
+import com.palinkas.raktar.databinding.FragmentDeliveryNoteInBinding
 
 class DeliveryNoteInFragment : Fragment() {
 
-    private var _binding: FragmentHomeBinding? = null
+    private var _binding: FragmentDeliveryNoteInBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -24,7 +24,7 @@ class DeliveryNoteInFragment : Fragment() {
         val deliveryNoteInViewModel =
             ViewModelProvider(this)[DeliveryNoteInViewModel::class.java]
 
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        _binding = FragmentDeliveryNoteInBinding.inflate(inflater, container, false)
 
         return binding.root
     }
