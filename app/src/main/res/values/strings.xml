@@ -1,15 +1,20 @@
 <resources>
-    <string name="app_name">Raktar</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
-    <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
+    <string name="app_name">Raktár</string>
+    <string name="navigation_drawer_open">Navigáció mutatása</string>
+    <string name="navigation_drawer_close">Navigáció elrejtése</string>
+    <string name="nav_header_title">Raktár</string>
+    <string name="nav_header_subtitle">palinkas.akos97@gmail.com</string>
+    <string name="nav_header_desc">Navigáció</string>
+    <string name="action_settings">Beállítások</string>
 
-    <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
+    <string name="menu_home">Kezdőlap</string>
+    <string name="menu_products">Termékek</string>
     <string name="menu_slideshow">Slideshow</string>
     <string name="supplier">Beszállító:</string>
     <string name="product_name">Termék neve</string>
+    <string name="cancel">Mégse</string>
+    <string name="yes">Igen</string>
+    <string name="ok">OK</string>
+    <string name="back_navigation_confirmation_dialog_title">Biztos benne?</string>
+    <string name="back_navigation_confirmation_dialog_message">Biztos visszalép mentés nélkül?</string>
 </resources>

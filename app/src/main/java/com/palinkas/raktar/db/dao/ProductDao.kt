@@ -11,6 +11,9 @@ abstract class ProductDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract fun insertAll(items: List<Product>)
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    abstract fun insert(item: Product)
+
     @Query("DELETE FROM products")
     abstract fun deleteAll()
 
@@ -21,7 +24,7 @@ abstract class ProductDao {
     }
 
     @Query("""SELECT * FROM products""")
-    abstract fun getAll(): List<Product>
+    abstract fun getAll(): LiveData<List<Product>>
 
     @Delete
     abstract fun deleteProduct(p: List<Product>)

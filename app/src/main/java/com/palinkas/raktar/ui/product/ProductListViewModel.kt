@@ -1,13 +1,30 @@
 package com.palinkas.raktar.ui.product
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.palinkas.raktar.db.entities.Product
+import com.palinkas.raktar.db.repositories.ProductRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import java.util.UUID
+import javax.inject.Inject
 
-class ProductListViewModel : ViewModel() {
-
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is gallery Fragment"
+@HiltViewModel
+class ProductListViewModel @Inject constructor(
+    private val productRepository: ProductRepository
+) : ViewModel() {
+    fun insertProduct() {
+        productRepository.insertProduct(
+            Product(
+                UUID.randomUUID().toString(),
+                "CK001",
+                "teszt termék",
+                "kg",
+                "",
+                "1".toBigDecimal(),
+                "teszt kód"
+            )
+        )
     }
-    val text: LiveData<String> = _text
+
+    var list = productRepository.getALl()
+
 }

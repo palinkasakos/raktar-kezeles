@@ -16,4 +16,5 @@ class AppModule {
     @Provides
     fun provideSharedPreferences(application: Application) =
         PreferenceManager.getDefaultSharedPreferences(application)
+
 }

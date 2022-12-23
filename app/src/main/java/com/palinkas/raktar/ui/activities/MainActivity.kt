@@ -1,8 +1,10 @@
 package com.palinkas.raktar.ui.activities
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.Menu
-import com.google.android.material.snackbar.Snackbar
+import android.view.View
+import androidx.activity.viewModels
 import com.google.android.material.navigation.NavigationView
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -11,13 +13,31 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
+import androidx.lifecycle.lifecycleScope
+import com.palinkas.raktar.BuildConfig
 import com.palinkas.raktar.R
 import com.palinkas.raktar.databinding.ActivityMainBinding
+import com.palinkas.raktar.ui.common.CustomAlertDialog
+import com.palinkas.raktar.utils.LoadingHelper
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
+    private val viewModel by viewModels<MainActivityViewModel>()
+    var dialog: CustomAlertDialog? = null
+
+    @Inject
+    lateinit var sharedPreferences: SharedPreferences
+
+    @Inject
+    lateinit var loadingHelper: LoadingHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,12 +45,19 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        lifecycleScope.launch {
+            loadingHelper.loadingFlow.collectLatest {
+                val visibility = if (it) View.VISIBLE else View.GONE
+
+//                binding.backdrop.visibility = visibility
+//                binding.progressIndicator.visibility = visibility
+            }
+        }
+
         setSupportActionBar(binding.appBarMain.toolbar)
 
-        binding.appBarMain.fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-        }
+        setUpNavigation()
+
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView
         val navController = findNavController(R.id.nav_host_fragment_content_main)
@@ -38,21 +65,98 @@ class MainActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow
+                R.id.nav_home, R.id.nav_products, R.id.nav_slideshow
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.main, menu)
-        return true
+
+    private fun setUpNavigation() {
+        val navController = findNavController(R.id.nav_host_fragment_content_main)
+        setSupportActionBar(binding.appBarMain.toolbar)
+
+        val menuItems = mutableListOf(
+            R.id.nav_home
+        )
+
+        appBarConfiguration = AppBarConfiguration(
+            menuItems.toSet(),
+            null
+        )
+
+        setupActionBarWithNavController(navController, appBarConfiguration)
+        binding.navView.setupWithNavController(navController)
     }
 
     override fun onSupportNavigateUp(): Boolean {
+        if(viewModel.showConfirmationDialogBeforeBackNavigation.value == true){
+            showConfirmationDialog()
+
+            return false
+        }
+
         val navController = findNavController(R.id.nav_host_fragment_content_main)
+
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
+
+    override fun onBackPressed() {
+        if(viewModel.showConfirmationDialogBeforeBackNavigation.value == true){
+            showConfirmationDialog()
+
+            return
+        }
+
+        val navController = findNavController(R.id.nav_host_fragment_content_main)
+
+        if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            binding.drawerLayout.closeDrawer(GravityCompat.START)
+        } else {
+            if (navController.currentDestination?.id != R.id.nav_home)
+                super.onBackPressed()
+        }
+    }
+
+    private fun showConfirmationDialog(){
+        dialog = CustomAlertDialog.createDialog(
+            getString(R.string.back_navigation_confirmation_dialog_title),
+            getString(R.string.back_navigation_confirmation_dialog_message),
+            getString(R.string.yes),
+            getString(R.string.cancel),
+            { _, _ -> handleNavigation() },
+            { _, _, -> dialog?.dismiss() }
+        )
+
+        dialog?.show(supportFragmentManager, "close_supplier_order_dialog")
+    }
+
+    private fun handleNavigation(){
+        val navController = findNavController(R.id.nav_host_fragment_content_main)
+
+        navController.navigateUp()
+    }
+
+    private fun goToSettingsFragment() {
+        val navController = findNavController(R.id.nav_host_fragment_content_main)
+
+        if(BuildConfig.DEBUG){
+            //navController.navigate(R.id.nav_settings)
+
+            return
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.main, menu)
+
+        menu.findItem(R.id.action_settings)?.setOnMenuItemClickListener {
+            goToSettingsFragment()
+
+            true
+        }
+
+        return true
     }
 }
