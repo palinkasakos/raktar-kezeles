@@ -15,11 +15,25 @@
         android:id="@+id/nav_products"
         android:name="com.palinkas.raktar.ui.product.ProductListFragment"
         android:label="@string/menu_products"
-        tools:layout="@layout/fragment_product_list" />
+        tools:layout="@layout/fragment_product_list" >
+        <action
+            android:id="@+id/action_nav_products_to_productDetailFragment"
+            app:destination="@id/productDetailFragment"
+            app:popUpTo="@+id/action_nav_products_to_productDetailFragment"/>
+    </fragment>
 
     <fragment
         android:id="@+id/nav_slideshow"
         android:name="com.palinkas.raktar.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
+    <fragment
+        android:id="@+id/productDetailFragment"
+        android:name="com.palinkas.raktar.ui.product_detail.ProductDetailFragment"
+        android:label="@string/product_fragment"
+        tools:layout="@layout/fragment_product_detail" >
+        <argument
+            android:name="productId"
+            app:argType="integer" />
+    </fragment>
 </navigation>

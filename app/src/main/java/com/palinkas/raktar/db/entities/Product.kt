@@ -9,9 +9,9 @@ import java.math.BigDecimal
     tableName = Product.TABLE_NAME
 )
 class Product(
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
-    var id: String = "",
+    var id: Int? = null,
     @ColumnInfo(name = "product_number")
     var productNumber: String = "",
     @ColumnInfo(name = "name")

@@ -5,14 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView.OnQueryTextListener
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.withCreated
 import com.palinkas.raktar.databinding.FragmentProductListBinding
 import com.palinkas.raktar.db.entities.Product
+import com.palinkas.raktar.ui.common.BaseBindingFragment
 import com.palinkas.raktar.utils.autoCleared
+import com.palinkas.raktar.utils.navigateTo
 import com.palinkas.raktar.utils.setDebouncingOnClickListener
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
@@ -20,10 +19,10 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 @AndroidEntryPoint
-class ProductListFragment : Fragment() {
+class ProductListFragment :
+    BaseBindingFragment<FragmentProductListBinding, ProductListViewModel>() {
     private val viewModel by viewModels<ProductListViewModel>()
     private var adapter by autoCleared<ProductListAdapter>()
-    private var binding by autoCleared<FragmentProductListBinding>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,7 +33,7 @@ class ProductListFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
         binding.vm = viewModel
 
-        adapter = ProductListAdapter(viewLifecycleOwner)
+        adapter = ProductListAdapter(viewLifecycleOwner) { goToDetailView(it) }
 
         binding.recyclerView.adapter = adapter
         binding.searchView.setOnQueryTextListener(object : OnQueryTextListener {
@@ -53,6 +52,10 @@ class ProductListFragment : Fragment() {
         return binding.root
     }
 
+    private fun goToDetailView(id: Int) {
+        navigateTo(ProductListFragmentDirections.actionNavProductsToProductDetailFragment(id))
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -62,11 +65,7 @@ class ProductListFragment : Fragment() {
 
     private fun initListeners() {
         binding.floatingActionButton.setDebouncingOnClickListener {
-            viewLifecycleOwner.lifecycleScope.launch {
-                withContext(Dispatchers.IO) {
-                    viewModel.insertProduct()
-                }
-            }
+            goToDetailView(-1)
         }
     }
 
@@ -75,4 +74,6 @@ class ProductListFragment : Fragment() {
             adapter.items = it
         }
     }
+
+    override fun setUpViewModel() = viewModel
 }

@@ -3,6 +3,7 @@ package com.palinkas.raktar.ui.activities
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import androidx.activity.viewModels
 import com.google.android.material.navigation.NavigationView
@@ -15,6 +16,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavController
 import com.palinkas.raktar.BuildConfig
 import com.palinkas.raktar.R
 import com.palinkas.raktar.databinding.ActivityMainBinding
@@ -31,6 +33,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
     private val viewModel by viewModels<MainActivityViewModel>()
+
+    private var saveButton: MenuItem? = null
     var dialog: CustomAlertDialog? = null
 
     @Inject
@@ -49,8 +53,8 @@ class MainActivity : AppCompatActivity() {
             loadingHelper.loadingFlow.collectLatest {
                 val visibility = if (it) View.VISIBLE else View.GONE
 
-//                binding.backdrop.visibility = visibility
-//                binding.progressIndicator.visibility = visibility
+                binding.backdrop.visibility = visibility
+                binding.progressIndicator.visibility = visibility
             }
         }
 
@@ -72,6 +76,23 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
     }
 
+    private val listener = NavController.OnDestinationChangedListener { _, destination, _ ->
+        saveButton?.isVisible = destination.id == R.id.productDetailFragment
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        val navController = findNavController(R.id.nav_host_fragment_content_main)
+        navController.addOnDestinationChangedListener(listener)
+    }
+
+    override fun onPause() {
+        super.onPause()
+
+        val navController = findNavController(R.id.nav_host_fragment_content_main)
+        navController.removeOnDestinationChangedListener(listener)
+    }
 
     private fun setUpNavigation() {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
@@ -91,19 +112,19 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        if(viewModel.showConfirmationDialogBeforeBackNavigation.value == true){
+        if (viewModel.showConfirmationDialogBeforeBackNavigation.value == true) {
             showConfirmationDialog()
 
             return false
         }
+return super.onSupportNavigateUp()
+//        val navController = findNavController(R.id.nav_host_fragment_content_main)
 
-        val navController = findNavController(R.id.nav_host_fragment_content_main)
-
-        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+//        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
     override fun onBackPressed() {
-        if(viewModel.showConfirmationDialogBeforeBackNavigation.value == true){
+        if (viewModel.showConfirmationDialogBeforeBackNavigation.value == true) {
             showConfirmationDialog()
 
             return
@@ -114,25 +135,24 @@ class MainActivity : AppCompatActivity() {
         if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
             binding.drawerLayout.closeDrawer(GravityCompat.START)
         } else {
-            if (navController.currentDestination?.id != R.id.nav_home)
                 super.onBackPressed()
         }
     }
 
-    private fun showConfirmationDialog(){
+    private fun showConfirmationDialog() {
         dialog = CustomAlertDialog.createDialog(
             getString(R.string.back_navigation_confirmation_dialog_title),
             getString(R.string.back_navigation_confirmation_dialog_message),
             getString(R.string.yes),
             getString(R.string.cancel),
             { _, _ -> handleNavigation() },
-            { _, _, -> dialog?.dismiss() }
+            { _, _ -> dialog?.dismiss() }
         )
 
         dialog?.show(supportFragmentManager, "close_supplier_order_dialog")
     }
 
-    private fun handleNavigation(){
+    private fun handleNavigation() {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
 
         navController.navigateUp()
@@ -141,7 +161,7 @@ class MainActivity : AppCompatActivity() {
     private fun goToSettingsFragment() {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
 
-        if(BuildConfig.DEBUG){
+        if (BuildConfig.DEBUG) {
             //navController.navigate(R.id.nav_settings)
 
             return
@@ -150,11 +170,23 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.main, menu)
+        val navController = findNavController(R.id.nav_host_fragment_content_main)
 
         menu.findItem(R.id.action_settings)?.setOnMenuItemClickListener {
             goToSettingsFragment()
 
             true
+        }
+
+        saveButton = menu.findItem(R.id.action_save)
+
+        saveButton?.let {
+            it.setOnMenuItemClickListener {
+                true
+            }
+
+
+            it.isVisible = navController.currentDestination?.id == R.id.productDetailFragment
         }
 
         return true

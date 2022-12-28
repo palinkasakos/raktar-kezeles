@@ -1,9 +1,7 @@
 package com.palinkas.raktar.db.dao
 
 import androidx.lifecycle.LiveData
-import androidx.paging.DataSource
 import androidx.room.*
-import androidx.sqlite.db.SimpleSQLiteQuery
 import com.palinkas.raktar.db.entities.Product
 
 @Dao
@@ -12,7 +10,19 @@ abstract class ProductDao {
     abstract fun insertAll(items: List<Product>)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    abstract fun insert(item: Product)
+    abstract fun insertOrReplace(item: Product)
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    abstract fun insertOrIgnore(item: Product): Long
+
+    @Update
+    abstract fun update(item: Product)
+
+    open fun insertOrUpdate(item: Product){
+        if (insertOrIgnore(item) == "-1".toLong()){
+            update(item)
+        }
+    }
 
     @Query("DELETE FROM products")
     abstract fun deleteAll()
@@ -22,6 +32,9 @@ abstract class ProductDao {
         deleteAll()
         insertAll(items)
     }
+
+    @Query("""SELECT * FROM products where id == :id""")
+    abstract fun get(id: Int): LiveData<Product>
 
     @Query("""SELECT * FROM products""")
     abstract fun getAll(): LiveData<List<Product>>

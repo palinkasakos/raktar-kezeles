@@ -1,8 +1,9 @@
-package com.palinkas.raktar.db
+package com.palinkas.raktar.di
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import com.palinkas.raktar.db.DbTypeConverters
 import com.palinkas.raktar.db.dao.*
 import com.palinkas.raktar.db.entities.*
 import dagger.hilt.InstallIn

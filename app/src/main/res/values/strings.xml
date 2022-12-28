@@ -6,6 +6,8 @@
     <string name="nav_header_subtitle">palinkas.akos97@gmail.com</string>
     <string name="nav_header_desc">Navigáció</string>
     <string name="action_settings">Beállítások</string>
+    <string name="action_save">Mentés</string>
+    <string name="action_save_upper">MENTÉS</string>
 
     <string name="menu_home">Kezdőlap</string>
     <string name="menu_products">Termékek</string>
@@ -17,4 +19,12 @@
     <string name="ok">OK</string>
     <string name="back_navigation_confirmation_dialog_title">Biztos benne?</string>
     <string name="back_navigation_confirmation_dialog_message">Biztos visszalép mentés nélkül?</string>
+
+    <!-- Product Detail Fragment -->
+
+    <string name="product_fragment">Termék</string>
+    <string name="product_number_label">Cikkszám:</string>
+    <string name="product_name_label">Megnevezés:</string>
+    <string name="unit_label">Menny. egys.:</string>
+    <string name="save_button_desc">Mentés gomb</string>
 </resources>

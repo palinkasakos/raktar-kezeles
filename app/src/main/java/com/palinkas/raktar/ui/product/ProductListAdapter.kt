@@ -13,7 +13,8 @@ import com.palinkas.raktar.databinding.ProductListItemBinding
 import com.palinkas.raktar.db.entities.Product
 
 class ProductListAdapter(
-    private val lifecycle: LifecycleOwner
+    private val lifecycle: LifecycleOwner,
+    private val itemClick: (id: Int) -> Unit
 ) : RecyclerView.Adapter<ProductListAdapter.ViewHolders>() {
     private val differ = AsyncListDiffer<Any>(this, DIFF_CALLBACK)
 
@@ -46,6 +47,12 @@ class ProductListAdapter(
                 lifecycleOwner = lifecycle
 
                 product = model1
+
+                product?.id?.let { id ->
+                    main.setOnClickListener {
+                        itemClick.invoke(id)
+                    }
+                }
             }
         }
     }
