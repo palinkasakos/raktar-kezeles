@@ -1,5 +1,7 @@
 package com.palinkas.raktar.ui.product
 
+import androidx.lifecycle.viewModelScope
+import androidx.paging.cachedIn
 import com.palinkas.raktar.db.entities.Product
 import com.palinkas.raktar.db.repositories.ProductRepository
 import com.palinkas.raktar.ui.common.BaseViewModel
@@ -11,10 +13,7 @@ import javax.inject.Inject
 class ProductListViewModel @Inject constructor(
     private val productRepository: ProductRepository
 ) : BaseViewModel() {
-    fun newProduct() {
 
-    }
-
-    var list = productRepository.getALl()
+    val list by lazy { productRepository.getAllPaged().cachedIn(viewModelScope)}
 
 }

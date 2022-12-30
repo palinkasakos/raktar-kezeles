@@ -27,4 +27,5 @@
     <string name="product_name_label">Megnevezés:</string>
     <string name="unit_label">Menny. egys.:</string>
     <string name="save_button_desc">Mentés gomb</string>
+    <string name="product_information">Termék információ</string>
 </resources>

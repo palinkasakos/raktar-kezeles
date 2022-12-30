@@ -14,6 +14,9 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
+import androidx.core.graphics.drawable.DrawableCompat
 import androidx.core.view.GravityCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
@@ -77,7 +80,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private val listener = NavController.OnDestinationChangedListener { _, destination, _ ->
-        saveButton?.isVisible = destination.id == R.id.productDetailFragment
+
     }
 
     override fun onResume() {
@@ -117,10 +120,10 @@ class MainActivity : AppCompatActivity() {
 
             return false
         }
-return super.onSupportNavigateUp()
-//        val navController = findNavController(R.id.nav_host_fragment_content_main)
 
-//        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+        val navController = findNavController(R.id.nav_host_fragment_content_main)
+
+        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
     override fun onBackPressed() {
@@ -135,7 +138,7 @@ return super.onSupportNavigateUp()
         if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
             binding.drawerLayout.closeDrawer(GravityCompat.START)
         } else {
-                super.onBackPressed()
+            super.onBackPressed()
         }
     }
 

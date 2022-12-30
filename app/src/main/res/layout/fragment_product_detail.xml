@@ -13,92 +13,107 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:theme="@style/Theme.Raktar"
-        android:padding="8dp">
+        android:theme="@style/Theme.Raktar">
 
-        <TextView
-            android:id="@+id/product_number_label"
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:labelFor="@+id/product_number_edit_text"
-            android:text="@string/product_number_label"
-            android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:gravity="center_vertical"/>
+            app:layout_constraintTop_toTopOf="parent">
 
-        <EditText
-            android:id="@+id/product_number_edit_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:importantForAutofill="no"
-            android:inputType="text"
-            android:textSize="20sp"
-            android:text="@={vm.product.productNumber}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/product_number_label"
-            tools:ignore="TextFields" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="8dp"
+                android:theme="@style/Theme.Raktar">
 
-        <TextView
-            android:id="@+id/product_name_label"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:labelFor="@+id/product_name_edit_text"
-            android:text="@string/product_name_label"
-            android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/product_number_edit_text"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:gravity="center_vertical" />
+                <TextView
+                    android:id="@+id/product_number_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:labelFor="@+id/product_number_edit_text"
+                    android:text="@string/product_number_label"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-        <EditText
-            android:id="@+id/product_name_edit_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:importantForAutofill="no"
-            android:inputType="text"
-            android:textSize="20sp"
-            android:text="@={vm.product.name}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/product_name_label" />
+                <EditText
+                    android:id="@+id/product_number_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:importantForAutofill="no"
+                    android:inputType="text"
+                    android:text="@={vm.product.productNumber}"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/product_number_label"
+                    tools:ignore="TextFields" />
 
-        <TextView
-            android:id="@+id/unit_label"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:labelFor="@+id/unit_edit_text"
-            android:text="@string/unit_label"
-            android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/product_name_edit_text"
-            android:gravity="center_vertical"/>
+                <TextView
+                    android:id="@+id/product_name_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:labelFor="@+id/product_name_edit_text"
+                    android:text="@string/product_name_label"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/product_number_edit_text" />
 
-        <EditText
-            android:id="@+id/unit_edit_text"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:importantForAutofill="no"
-            android:inputType="text"
-            android:textSize="20sp"
-            android:text="@={vm.product.unitId}"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/unit_label" />
+                <EditText
+                    android:id="@+id/product_name_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:importantForAutofill="no"
+                    android:inputType="text"
+                    android:text="@={vm.product.name}"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/product_name_label" />
+
+                <TextView
+                    android:id="@+id/unit_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:labelFor="@+id/unit_edit_text"
+                    android:text="@string/unit_label"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/product_name_edit_text" />
+
+                <EditText
+                    android:id="@+id/unit_edit_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:importantForAutofill="no"
+                    android:inputType="text"
+                    android:text="@={vm.product.unitId}"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/unit_label" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/save_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:clickable="true"
-            app:srcCompat="@drawable/ic_baseline_save_48"
+            android:contentDescription="@string/save_button_desc"
+            android:focusable="true"
             android:text="@string/action_save_upper"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:focusable="true"
-            android:contentDescription="@string/save_button_desc" />
+            app:srcCompat="@drawable/ic_baseline_save_48" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

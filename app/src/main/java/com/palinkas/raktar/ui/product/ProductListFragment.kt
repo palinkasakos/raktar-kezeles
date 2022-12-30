@@ -5,8 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView.OnQueryTextListener
+import androidx.core.view.ViewCompat
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import com.palinkas.raktar.R
 import com.palinkas.raktar.databinding.FragmentProductListBinding
 import com.palinkas.raktar.db.entities.Product
 import com.palinkas.raktar.ui.common.BaseBindingFragment
@@ -22,7 +24,7 @@ import kotlinx.coroutines.withContext
 class ProductListFragment :
     BaseBindingFragment<FragmentProductListBinding, ProductListViewModel>() {
     private val viewModel by viewModels<ProductListViewModel>()
-    private var adapter by autoCleared<ProductListAdapter>()
+    private var adapter by autoCleared<ProductListAdapter2>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,7 +35,9 @@ class ProductListFragment :
         binding.lifecycleOwner = viewLifecycleOwner
         binding.vm = viewModel
 
-        adapter = ProductListAdapter(viewLifecycleOwner) { goToDetailView(it) }
+        adapter = ProductListAdapter2() { goToDetailView(it) }
+
+        setAppBarElevationZero()
 
         binding.recyclerView.adapter = adapter
         binding.searchView.setOnQueryTextListener(object : OnQueryTextListener {
@@ -42,14 +46,22 @@ class ProductListFragment :
             }
 
             override fun onQueryTextChange(s: String): Boolean {
-                adapter.items.filter {
-                    it is Product && (it.productNumber.contains(s) || it.name!!.contains(s))
-                }
+//                adapter. {
+//                    it is Product && (it.productNumber.contains(s) || it.name!!.contains(s))
+//                }
                 return false
             }
         })
 
         return binding.root
+    }
+
+
+    private fun setAppBarElevationZero() {
+        val view = activity?.window?.decorView?.findViewById<View>(R.id.main_app_bar)
+        view?.let {
+            ViewCompat.setElevation(it, 0.0f)
+        }
     }
 
     private fun goToDetailView(id: Int) {
@@ -71,7 +83,9 @@ class ProductListFragment :
 
     private fun initObservers() {
         viewModel.list.observe(viewLifecycleOwner) {
-            adapter.items = it
+            viewLifecycleOwner.lifecycleScope.launchWhenCreated {
+                adapter.submitData(it)
+            }
         }
     }
 

@@ -15,15 +15,29 @@
         android:layout_height="match_parent"
         android:theme="@style/Theme.Raktar">
 
-        <SearchView
-            android:id="@+id/searchView"
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/search_app_bar_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:iconifiedByDefault="false"
-            android:queryHint="Cikkszám, megnevezés"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_height="0dp"
+            android:background="@drawable/toolbar_drawable"
+            app:layout_constraintTop_toTopOf="parent"
+            android:elevation="0dp">
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp">
+            <SearchView
+                android:id="@+id/searchView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:iconifiedByDefault="false"
+                android:queryHint="Keresés..."
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            </com.google.android.material.card.MaterialCardView>
+        </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
@@ -34,10 +48,10 @@
             android:overScrollMode="ifContentScrolls"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/searchView" />
+            app:layout_constraintTop_toBottomOf="@id/search_app_bar_layout" />
 
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton

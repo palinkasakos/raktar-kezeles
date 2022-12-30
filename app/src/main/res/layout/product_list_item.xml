@@ -9,51 +9,56 @@
             type="com.palinkas.raktar.db.entities.Product" />
     </data>
 
-        <LinearLayout
-            android:id="@+id/root_linearLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:focusable="true"
-            android:orientation="horizontal">
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="1dp">
+    <LinearLayout
+        android:id="@+id/root_linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        android:orientation="horizontal">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/main"
-                android:layout_width="match_parent"
-                android:layout_height="72dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:foreground="?android:attr/selectableItemBackgroundBorderless"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackgroundBorderless"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        >
+            <TextView
+                android:id="@+id/content_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="@{product.name}"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toTopOf="@+id/content_productNumber"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed" />
 
-                <TextView
-                    android:id="@+id/content_name"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:ellipsize="end"
-                    android:maxLines="2"
-                    android:text="@{product.name}"
-                    android:textSize="16sp"
-                    app:layout_constraintBottom_toTopOf="@+id/content_productNumber"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_chainStyle="packed" />
+            <TextView
+                android:id="@+id/content_productNumber"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{product.productNumber}"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/content_name"
+                app:layout_constraintVertical_chainStyle="packed" />
 
-                <TextView
-                    android:id="@+id/content_productNumber"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="@{product.productNumber}"
-                    android:textSize="14sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/content_name"
-                    app:layout_constraintVertical_chainStyle="packed" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+    </androidx.cardview.widget.CardView>
 </layout>

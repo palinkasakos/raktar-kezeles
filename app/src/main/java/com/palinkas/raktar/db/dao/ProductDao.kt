@@ -1,6 +1,7 @@
 package com.palinkas.raktar.db.dao
 
 import androidx.lifecycle.LiveData
+import androidx.paging.PagingSource
 import androidx.room.*
 import com.palinkas.raktar.db.entities.Product
 
@@ -38,6 +39,9 @@ abstract class ProductDao {
 
     @Query("""SELECT * FROM products""")
     abstract fun getAll(): LiveData<List<Product>>
+
+    @Query("""SELECT * FROM products""")
+    abstract fun getAllPaged(): PagingSource<Int, Product>
 
     @Delete
     abstract fun deleteProduct(p: List<Product>)

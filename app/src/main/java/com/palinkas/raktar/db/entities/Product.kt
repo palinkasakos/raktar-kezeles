@@ -28,4 +28,8 @@ class Product(
     companion object {
         const val TABLE_NAME = "products"
     }
+
+    override fun equals(other: Any?): Boolean {
+        return super.equals(other)
+    }
 }
