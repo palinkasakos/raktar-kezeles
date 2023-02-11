@@ -3,6 +3,7 @@ package com.palinkas.raktar.db.dao
 import androidx.lifecycle.LiveData
 import androidx.paging.PagingSource
 import androidx.room.*
+import androidx.sqlite.db.SimpleSQLiteQuery
 import com.palinkas.raktar.db.entities.Product
 
 @Dao
@@ -34,14 +35,14 @@ abstract class ProductDao {
         insertAll(items)
     }
 
-    @Query("""SELECT * FROM products where id == :id""")
-    abstract fun get(id: Int): LiveData<Product>
+    @Query("""SELECT * FROM products where oid == :oid""")
+    abstract fun get(oid: String): LiveData<Product>
 
     @Query("""SELECT * FROM products""")
     abstract fun getAll(): LiveData<List<Product>>
 
-    @Query("""SELECT * FROM products""")
-    abstract fun getAllPaged(): PagingSource<Int, Product>
+    @RawQuery(observedEntities = [Product::class])
+    abstract fun getAllPaged(simpleSQLiteQuery: SimpleSQLiteQuery): PagingSource<Int, Product>
 
     @Delete
     abstract fun deleteProduct(p: List<Product>)

@@ -62,7 +62,7 @@ class ProductDetailFragment :
 
     private fun initObservers() {
         args.productId.let {
-            if (it != -1) {
+            if (it != "-1") {
                 viewModel.queryProduct(it).observe(viewLifecycleOwner) { product ->
                     viewModel.setProduct(product)
                 }

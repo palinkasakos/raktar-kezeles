@@ -11,7 +11,7 @@
 
     <string name="menu_home">Kezdőlap</string>
     <string name="menu_products">Termékek</string>
-    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_company">Céginformáció</string>
     <string name="supplier">Beszállító:</string>
     <string name="product_name">Termék neve</string>
     <string name="cancel">Mégse</string>
@@ -28,4 +28,15 @@
     <string name="unit_label">Menny. egys.:</string>
     <string name="save_button_desc">Mentés gomb</string>
     <string name="product_information">Termék információ</string>
+
+    <!-- Company Fragment -->
+    <string name="company_name_label">Cégnév</string>
+    <string name="storage_name_label">Raktár</string>
+    <string name="storage_section_label">Raktárak</string>
+    <string name="company_section_label">Cégadatok</string>
+    <string name="company_info_new_storage_button">Új raktár létrehozása</string>
+    <string name="basic_data_section_label">Adatok</string>
+    <string name="save_storage_button">Raktár mentése</string>
+    <string name="search_bar_hint">Keresés...</string>
+
 </resources>

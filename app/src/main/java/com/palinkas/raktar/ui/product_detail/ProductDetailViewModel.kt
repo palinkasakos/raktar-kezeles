@@ -20,8 +20,8 @@ class ProductDetailViewModel @Inject constructor(
         _product.value = product
     }
 
-    fun queryProduct(id: Int): LiveData<Product> {
-        return productRepository.get(id)
+    fun queryProduct(oid: String): LiveData<Product> {
+        return productRepository.get(oid)
     }
 
     fun insertOrUpdateProduct() {

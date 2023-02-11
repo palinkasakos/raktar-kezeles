@@ -10,7 +10,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 
 @Database(
-    entities = [Product::class, Storage::class],
+    entities = [Product::class, Storage::class, OwnCompany::class],
     version = 1
 )
 @TypeConverters(DbTypeConverters::class)
@@ -19,4 +19,6 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun storageDao(): StorageDao
 
     abstract fun productDao(): ProductDao
+
+    abstract fun ownCompanyDao(): OwnCompanyDao
 }

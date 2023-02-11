@@ -4,14 +4,15 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.math.BigDecimal
+import java.util.*
 
 @Entity(
     tableName = Product.TABLE_NAME
 )
 class Product(
-    @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "id")
-    var id: Int? = null,
+    @PrimaryKey()
+    @ColumnInfo(name = "oid")
+    var oid: String = UUID.randomUUID().toString(),
     @ColumnInfo(name = "product_number")
     var productNumber: String = "",
     @ColumnInfo(name = "name")

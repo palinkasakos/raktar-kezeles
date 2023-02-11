@@ -22,10 +22,10 @@
     </fragment>
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.palinkas.raktar.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/nav_company"
+        android:name="com.palinkas.raktar.ui.company.CompanyFragment"
+        android:label="@string/menu_company"
+        tools:layout="@layout/fragment_company" />
     <fragment
         android:id="@+id/productDetailFragment"
         android:name="com.palinkas.raktar.ui.product_detail.ProductDetailFragment"
@@ -33,6 +33,6 @@
         tools:layout="@layout/fragment_product_detail">
         <argument
             android:name="productId"
-            app:argType="integer" />
+            app:argType="string" />
     </fragment>
 </navigation>

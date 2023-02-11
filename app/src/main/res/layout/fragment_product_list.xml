@@ -20,22 +20,18 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:background="@drawable/toolbar_drawable"
-            app:layout_constraintTop_toTopOf="parent"
-            android:elevation="0dp">
+            android:elevation="0dp"
+            app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp">
-            <SearchView
-                android:id="@+id/searchView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:iconifiedByDefault="false"
-                android:queryHint="Keresés..."
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+
+                <include
+                    layout="@layout/search_bar"
+                    android:id="@+id/search_bar_layout"
+                    app:hint="Keresés..." />
             </com.google.android.material.card.MaterialCardView>
         </com.google.android.material.appbar.AppBarLayout>
 

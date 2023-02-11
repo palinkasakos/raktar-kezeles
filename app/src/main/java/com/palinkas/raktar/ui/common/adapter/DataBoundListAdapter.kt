@@ -1,9 +1,10 @@
-package hu.tandofer.android_kis_gep_szerviz.ui.common.adapter
+package com.palinkas.raktar.ui.common.adapter
 
 import android.view.ViewGroup
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
+import hu.tandofer.android_kis_gep_szerviz.ui.common.adapter.DataBoundViewHolder
 
 abstract class DataBoundListAdapter<T, V : ViewDataBinding>(diffCallback: DiffUtil.ItemCallback<T>) :
     ListAdapter<T, DataBoundViewHolder<V>>(diffCallback) {

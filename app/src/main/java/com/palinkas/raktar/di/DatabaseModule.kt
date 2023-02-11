@@ -2,6 +2,7 @@ package com.palinkas.raktar.di
 
 import android.app.Application
 import androidx.room.Room
+import com.palinkas.raktar.db.dao.OwnCompanyDao
 import com.palinkas.raktar.db.dao.ProductDao
 import com.palinkas.raktar.db.dao.StorageDao
 import dagger.Module
@@ -40,5 +41,12 @@ class DaoModule {
     @Singleton
     fun provideProductDao(db: AppDatabase): ProductDao {
         return db.productDao()
+    }
+
+
+    @Provides
+    @Singleton
+    fun provideOwnCompanyDao(db: AppDatabase): OwnCompanyDao{
+        return db.ownCompanyDao()
     }
 }

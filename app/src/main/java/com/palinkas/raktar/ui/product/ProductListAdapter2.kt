@@ -9,7 +9,7 @@ import com.palinkas.raktar.db.entities.Product
 import hu.tandofer.android_kis_gep_szerviz.ui.common.adapter.DataBoundPagedListAdapter
 
 class ProductListAdapter2(
-    private val itemClick: (id: Int) -> Unit
+    private val itemClick: (oid: String) -> Unit
 ) : DataBoundPagedListAdapter<Product,ProductListItemBinding>(DIFF_CALLBACK) {
 
     override fun createBinding(parent: ViewGroup): ProductListItemBinding {
@@ -19,9 +19,9 @@ class ProductListAdapter2(
     override fun bind(binding: ProductListItemBinding, item: Product?) {
         binding.product = item
 
-        item?.id?.let {id->
+        item?.oid?.let {oid->
             binding.main.setOnClickListener {
-                itemClick.invoke(id)
+                itemClick.invoke(oid)
             }
         }
     }
@@ -29,7 +29,7 @@ class ProductListAdapter2(
     companion object {
         val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Product>(){
             override fun areItemsTheSame(oldItem: Product, newItem: Product): Boolean {
-                return oldItem.id == newItem.id
+                return oldItem.oid == newItem.oid
             }
 
             override fun areContentsTheSame(oldItem: Product, newItem: Product): Boolean {
