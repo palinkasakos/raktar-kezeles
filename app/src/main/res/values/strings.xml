@@ -38,5 +38,7 @@
     <string name="basic_data_section_label">Adatok</string>
     <string name="save_storage_button">Raktár mentése</string>
     <string name="search_bar_hint">Keresés...</string>
+    <string name="new_product">ÚJ TERMÉK</string>
+    <string name="new_storage_upper">ÚJ RAKTÁR</string>
 
 </resources>

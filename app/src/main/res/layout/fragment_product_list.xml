@@ -50,15 +50,17 @@
             app:layout_constraintTop_toBottomOf="@id/search_app_bar_layout" />
 
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
             android:id="@+id/floatingActionButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:clickable="true"
             android:contentDescription="Új termék létrehozás gomb"
             android:focusable="true"
+            android:text="@string/new_product"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:srcCompat="@android:drawable/ic_input_add" />
+            app:srcCompat="@android:drawable/ic_input_add"
+            tools:icon="@android:drawable/ic_input_add"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

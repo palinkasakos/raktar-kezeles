@@ -13,27 +13,5 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.deliveryNoteIn.DeliveryNoteInFragment"
-        android:padding="8dp">
-
-        <TextView
-            android:id="@+id/supplier_label"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:textSize="20sp"
-            android:text="@string/supplier"
-            android:paddingRight="8dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <EditText
-            android:id="@+id/supplier_edit_text"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/supplier_label"
-            app:layout_constraintTop_toTopOf="@+id/supplier_label"
-            app:layout_constraintBottom_toBottomOf="@+id/supplier_label"
-            android:inputType="textAutoComplete" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        android:padding="8dp"/>
 </layout>
