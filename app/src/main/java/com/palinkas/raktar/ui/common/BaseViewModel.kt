@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.palinkas.raktar.utils.BusinessException
 import com.palinkas.raktar.utils.LoadingHelper
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
@@ -14,7 +15,8 @@ import kotlinx.coroutines.withContext
 import timber.log.Timber
 import javax.inject.Inject
 
-open class BaseViewModel : ViewModel() {
+@HiltViewModel
+open class BaseViewModel @Inject constructor() : ViewModel() {
     @Inject
     lateinit var loadingHelper: LoadingHelper
 
@@ -41,13 +43,13 @@ open class BaseViewModel : ViewModel() {
 
     fun showLoading() {
         viewModelScope.launch {
-            loadingHelper.showLoading()
+            //loadingHelper.showLoading()
         }
     }
 
     fun hideLoading() {
         viewModelScope.launch {
-            loadingHelper.hideLoading()
+            //loadingHelper.hideLoading()
         }
     }
 

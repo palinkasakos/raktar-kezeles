@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.palinkas.raktar.databinding.FragmentDeliveryNoteInBinding
 import com.palinkas.raktar.databinding.FragmentStorageInBinding
 
 class StorageInFragment : Fragment() {

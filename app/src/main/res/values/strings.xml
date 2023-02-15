@@ -40,5 +40,9 @@
     <string name="search_bar_hint">Keresés...</string>
     <string name="new_product">ÚJ TERMÉK</string>
     <string name="new_storage_upper">ÚJ RAKTÁR</string>
+    <string name="qtt_label">Mennyiség:</string>
+    <string name="product_label">Termék:</string>
+    <string name="storage_in_button">BETÁROLÁS</string>
+    <string name="storage_out_button">KITÁROLÁS</string>
 
 </resources>

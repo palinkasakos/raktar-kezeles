@@ -22,7 +22,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
 app:layout_constraintEnd_toEndOf="parent"
-            android:text="Termék:"
+            android:text="@string/product_label"
             android:textSize="18sp"
             android:labelFor="@id/product_multi_ac_text_view"/>
 
@@ -42,7 +42,7 @@ app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/product_multi_ac_text_view"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:text="Mennyiség:"
+            android:text="@string/qtt_label"
             android:textSize="18sp"
             android:labelFor="@id/qtt_edit_text"/>
 
@@ -54,6 +54,25 @@ app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
+
+        <TextView
+            android:id="@+id/unit_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/qtt_edit_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:text="@string/unit_label"
+            android:textSize="18sp"
+            android:labelFor="@id/unit_edit_text"/>
+
+        <EditText
+            android:id="@+id/unit_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/unit_label"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
             android:id="@+id/save_button"

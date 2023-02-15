@@ -7,9 +7,13 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.palinkas.raktar.ui.deliveryNoteIn.DeliveryNoteInFragment"
+        android:name="com.palinkas.raktar.ui.home.HomeFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_delivery_note_in" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_nav_home_to_storageInFragment"
+            app:destination="@id/storageInFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_products"
@@ -25,7 +29,11 @@
         android:id="@+id/nav_company"
         android:name="com.palinkas.raktar.ui.company.CompanyFragment"
         android:label="@string/menu_company"
-        tools:layout="@layout/fragment_company" />
+        tools:layout="@layout/fragment_company" >
+        <action
+            android:id="@+id/action_nav_company_to_storageFragment"
+            app:destination="@id/storageFragment" />
+    </fragment>
     <fragment
         android:id="@+id/productDetailFragment"
         android:name="com.palinkas.raktar.ui.product_detail.ProductDetailFragment"
@@ -35,4 +43,14 @@
             android:name="productId"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/storageFragment"
+        android:name="com.palinkas.raktar.ui.company.StorageFragment"
+        android:label="StorageFragment"
+        tools:layout="@layout/fragment_storage"/>
+    <fragment
+        android:id="@+id/storageInFragment"
+        android:name="com.palinkas.raktar.ui.storageIn.StorageInFragment"
+        android:label="StorageInFragment"
+        tools:layout="@layout/fragment_storage_in"/>
 </navigation>

@@ -30,9 +30,6 @@ abstract class BaseBindingFragment<V : ViewDataBinding, VM : BaseViewModel> : Fr
         get() = Dispatchers.Main + localJob
 
     @Inject
-    lateinit var loadingHelper: LoadingHelper
-
-    @Inject
     lateinit var prefManager: PrefManager
 
     override fun onPause() {
